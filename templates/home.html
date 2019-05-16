@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<br>
+{% if times is none %} 
+
+  <div class="alert alert-info" role="alert">
+    <p class="text-center">Please use the Search Bar to find your Load Shedding Time Table</p>
+  </div>
+  
+
+{%else%}
+  <div class="card mx-auto"  style="width: 18rem;">
+      <img src="" class="card-img-top" alt="">
+      <div class="mx-auto">Schedule For </div>
+      <div class="mx-auto"><h1>{{location}}</h1></div>
+      <div class="card-body">
+          {% for time in times %}
+          <!-- <p class="card-text">{{ time.code}} </p>  -->
+        <p class="card-text mx-auto">{{ time.day}} : {{time.peak}}</p>
+        {% endfor %}
+      </div>
+    </div>
+    <br>  
+{% endif %}
+{% else %}
+<div class="alert alert-warning" role="alert">
+  <p class="text-center">You are not logged in, Please Login First</p>
+</div>
+  
+{% endif %}
+{% endblock content %}
